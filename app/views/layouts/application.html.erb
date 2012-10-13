@@ -11,11 +11,10 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <a class="brand" href="#">Title</a>
+        <a class="brand" href="/">Title</a>
         <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
+          <%= navigation_link 'Certificates', :developer_certificates %>
+          <%= navigation_link 'Provisioning', :provisioning_profiles %>
         </ul>
       </div>
     </div>

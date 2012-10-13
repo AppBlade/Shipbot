@@ -1,0 +1,2 @@
+module XcodeProjectsHelper
+end

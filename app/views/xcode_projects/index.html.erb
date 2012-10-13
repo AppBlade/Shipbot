@@ -1,0 +1,21 @@
+<h1>Listing xcode_projects</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @xcode_projects.each do |xcode_project| %>
+  <tr>
+    <td><%= link_to 'Show', xcode_project %></td>
+    <td><%= link_to 'Edit', edit_xcode_project_path(xcode_project) %></td>
+    <td><%= link_to 'Destroy', xcode_project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Xcode project', new_xcode_project_path %>

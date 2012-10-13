@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'carrierwave'
 gem 'nokogiri'
+gem 'xcodeproj', '0.2.0.rc3'
 
 # Gems used only for assets and not required
 # in production environments by default.

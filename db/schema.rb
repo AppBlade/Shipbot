@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013053752) do
+ActiveRecord::Schema.define(:version => 20121013063854) do
 
   create_table "developer_certificates", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20121013053752) do
     t.datetime "updated_at",               :null => false
     t.string   "keychain_export"
     t.string   "keychain_export_passcode"
+  end
+
+  create_table "native_targets", :force => true do |t|
+    t.integer  "xcode_project_id"
+    t.string   "uuid"
+    t.string   "product_name"
+    t.string   "product_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "provisioning_profiles", :force => true do |t|
@@ -40,6 +49,13 @@ ActiveRecord::Schema.define(:version => 20121013053752) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.integer  "developer_certificate_id"
+  end
+
+  create_table "xcode_projects", :force => true do |t|
+    t.string   "uuid"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
