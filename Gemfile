@@ -10,7 +10,6 @@ gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'carrierwave'
 gem 'nokogiri'
-gem 'xcodeproj', '0.2.0.rc3'
 gem 'lasso', :git => 'git@github.com:jamesdaniels/lasso.git'
 gem 'plist', :git => 'git@github.com:jamesdaniels/plist.git'
 
