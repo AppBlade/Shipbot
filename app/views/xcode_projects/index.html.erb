@@ -12,3 +12,7 @@
   <%= render @xcode_projects %>
 
 </table>
+
+<%= link_to [:new, :build_rule], :class => 'btn btn-success btn-large' do %>
+  <i class="icon-plus"></i> New build rule
+<% end %>

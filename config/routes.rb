@@ -5,6 +5,11 @@ TwoHundredTwentyTwo::Application.routes.draw do
 
   resources :developer_certificates
 
+  resources :build_rules, :only => [:new, :create]
+  resources :native_targets, :only => [] do
+    resources :build_rules, :expect => [:index, :show]
+  end
+
   resources :provisioning_profiles, :except => [:edit, :update]
 
   root :to => 'pages#index'

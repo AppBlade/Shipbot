@@ -1,0 +1,5 @@
+<%= simple_form_for [@native_target, @build_rule] do |form| %>
+  <%= form.input :native_target_id, :collection => NativeTarget.application_type unless @native_target %>
+  <%= form.input :provisioning_profile_id, :collection => ProvisioningProfile.all, :include_blank => false %>
+  <%= form.submit :class => 'btn btn-primary' %>
+<% end %>

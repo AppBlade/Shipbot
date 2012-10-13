@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  target_id: 1
+  provisioning_profile_id: 1
+  developer_certificate_id: 1
+
+two:
+  target_id: 1
+  provisioning_profile_id: 1
+  developer_certificate_id: 1

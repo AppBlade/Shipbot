@@ -1,11 +1,16 @@
 <tr>
-  <th rowspan="<%= xcode_project.native_targets.count %>">
+  <th rowspan="<%= [xcode_project.native_targets.application_type.count, 1].max %>">
     <%= xcode_project.name %>
   </th>
-  <%= render [xcode_project.native_targets.first].compact %>
+  <% if xcode_project.native_targets.application_type.count == 0 %>
+    <td colspan="4">No targets</td>
+  <% else %>
+    <%= render [xcode_project.native_targets.application_type.first].compact %>
+  <% end %>
 </tr>
 
-<% xcode_project.native_targets[1..-1].each do |native_target| %>
+
+<% (xcode_project.native_targets.application_type.all - [xcode_project.native_targets.application_type.first]).each do |native_target| %>
   <tr>
     <%= render [native_target] %>
   </tr>
