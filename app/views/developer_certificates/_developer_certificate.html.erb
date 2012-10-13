@@ -1,0 +1,11 @@
+<tr>
+  <td><%= developer_certificate.name %></td>
+  <td><%= developer_certificate.organization %></td>
+  <td>
+    <ul>
+    </ul>
+  </td>
+  <td><%= developer_certificate.pkcs12? %></td>
+  <td><%= link_to 'Details', developer_certificate %></td>
+  <td><%= link_to 'Destroy', developer_certificate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
