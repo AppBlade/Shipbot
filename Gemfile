@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'nokogiri'
 gem 'xcodeproj', '0.2.0.rc3'
 gem 'lasso', :git => 'git@github.com:jamesdaniels/lasso.git'
+gem 'plist', :git => 'git@github.com:jamesdaniels/plist.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

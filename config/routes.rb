@@ -1,6 +1,7 @@
 TwoHundredTwentyTwo::Application.routes.draw do
 
   resources :xcode_projects, :only => :index
+  resources :repositories, :only => :index
 
   resources :developer_certificates
 

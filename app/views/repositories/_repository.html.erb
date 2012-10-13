@@ -1,0 +1,5 @@
+<tr>
+  <td><%= repository.full_name %></td>
+  <td><%= pluralize repository.branches.count, 'branch' %></td>
+  <td><%= pluralize repository.tags.count, 'tag' %></td>
+</tr>

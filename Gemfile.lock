@@ -6,6 +6,12 @@ GIT
       oauth (~> 0.4.7)
       oauth2 (~> 0.8.0)
 
+GIT
+  remote: git@github.com:jamesdaniels/plist.git
+  revision: c617bc5748d696a0573be0e148f356b27e613b70
+  specs:
+    plist (3.1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -173,6 +179,7 @@ DEPENDENCIES
   lasso!
   mysql2
   nokogiri
+  plist!
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
   simple_form
