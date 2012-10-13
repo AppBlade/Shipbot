@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013035355) do
+ActiveRecord::Schema.define(:version => 20121013045105) do
 
   create_table "developer_certificates", :force => true do |t|
     t.string   "der",          :limit => 5000
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20121013035355) do
     t.integer  "provisioned_devices_count"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.integer  "developer_certificate_id"
   end
 
 end

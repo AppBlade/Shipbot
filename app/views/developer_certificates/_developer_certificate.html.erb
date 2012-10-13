@@ -3,6 +3,9 @@
   <td><%= developer_certificate.organization %></td>
   <td>
     <ul>
+      <% developer_certificate.provisioning_profiles.each do |provisioning_profile| %>
+        <%= link_to provisioning_profile, provisioning_profile %>
+      <% end %>
     </ul>
   </td>
   <td><%= time_ago_in_words developer_certificate.expires_at %></td>
