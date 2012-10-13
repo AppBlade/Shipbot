@@ -10,22 +10,8 @@
     <th></th>
   </tr>
 
-<% @provisioning_profiles.each do |provisioning_profile| %>
-  <tr>
-    <td><%= provisioning_profile.name %></td>
-    <td><%= time_ago_in_words provisioning_profile.expires_at %></td>
-    <td><%= provisioning_profile.unqualified_application_identifier %></td>
-    <td>
-      <% if provisioning_profile.enterprise %>
-        &#8734;
-      <% else %>
-        <%= provisioning_profile.provisioned_devices_count %>
-      <% end %>
-    </td>
-    <td><%= link_to 'Details', provisioning_profile %></td>
-    <td><%= link_to 'Destroy', provisioning_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <%= render @provisioning_profiles %>
+
 </table>
 
 <br />
