@@ -19,6 +19,8 @@ class RepositoryBranch < ActiveRecord::Base
         xcode_project.name = File.basename($1)
         xcode_project.save
 
+        XcodeProjectRef.create :xcode_project_id => xcode_project.id, :sha => sha
+
         root_object['targets'].each do |target_uuid|
           target = plist['objects'][target_uuid]
           native_target = xcode_project.native_targets.where(:uuid => target_uuid).first || xcode_project.native_targets.new
@@ -26,6 +28,8 @@ class RepositoryBranch < ActiveRecord::Base
           native_target.product_name = target['productName']
           native_target.product_type = target['productType']
           native_target.save
+
+          NativeTargetRef.create :native_target_id => native_target.id, :sha => sha
         end
       end
     end

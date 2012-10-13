@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013184234) do
+ActiveRecord::Schema.define(:version => 20121013194401) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(:version => 20121013184234) do
     t.datetime "updated_at",               :null => false
     t.string   "keychain_export"
     t.string   "keychain_export_passcode"
+  end
+
+  create_table "native_target_refs", :force => true do |t|
+    t.integer  "native_target_id"
+    t.string   "sha"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "native_targets", :force => true do |t|
@@ -90,6 +97,13 @@ ActiveRecord::Schema.define(:version => 20121013184234) do
     t.integer  "repository_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "xcode_project_refs", :force => true do |t|
+    t.integer  "xcode_project_id"
+    t.string   "sha"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "xcode_projects", :force => true do |t|

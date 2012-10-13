@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  xcode_project_id: 1
+  sha: MyString
+
+two:
+  xcode_project_id: 1
+  sha: MyString

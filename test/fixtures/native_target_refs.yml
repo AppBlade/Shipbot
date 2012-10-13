@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  native_target_id: 1
+  sha: MyString
+
+two:
+  native_target_id: 1
+  sha: MyString

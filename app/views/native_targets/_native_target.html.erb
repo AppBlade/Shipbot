@@ -2,7 +2,7 @@
   <%= native_target.product_name %>
 </td>
 <td>
-  <%= pluralize 0, 'branch' %>
+  <%= pluralize native_target.repository_branches.count, 'branch' %>
 </td>
 <td>
   <% if native_target.build_rules.any? %>
