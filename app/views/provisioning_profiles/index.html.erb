@@ -1,0 +1,40 @@
+<h1>Listing provisioning_profiles</h1>
+
+<table>
+  <tr>
+    <th>Uuid</th>
+    <th>Name</th>
+    <th>Issued at</th>
+    <th>Expires at</th>
+    <th>Enterprise</th>
+    <th>Application identifier</th>
+    <th>Team identifier</th>
+    <th>Application identifier prefix</th>
+    <th>Mobileprovision</th>
+    <th>Provisioned devices count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @provisioning_profiles.each do |provisioning_profile| %>
+  <tr>
+    <td><%= provisioning_profile.uuid %></td>
+    <td><%= provisioning_profile.name %></td>
+    <td><%= provisioning_profile.issued_at %></td>
+    <td><%= provisioning_profile.expires_at %></td>
+    <td><%= provisioning_profile.enterprise %></td>
+    <td><%= provisioning_profile.application_identifier %></td>
+    <td><%= provisioning_profile.team_identifier %></td>
+    <td><%= provisioning_profile.application_identifier_prefix %></td>
+    <td><%= provisioning_profile.mobileprovision %></td>
+    <td><%= provisioning_profile.provisioned_devices_count %></td>
+    <td><%= link_to 'Show', provisioning_profile %></td>
+    <td><%= link_to 'Destroy', provisioning_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Provisioning profile', new_provisioning_profile_path %>

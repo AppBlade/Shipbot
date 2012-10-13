@@ -8,6 +8,8 @@ gem 'rails', '3.2.8'
 gem 'mysql2'
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
+gem 'carrierwave'
+gem 'nokogiri'
 
 # Gems used only for assets and not required
 # in production environments by default.

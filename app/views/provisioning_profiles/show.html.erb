@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Uuid:</b>
+  <%= @provisioning_profile.uuid %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @provisioning_profile.name %>
+</p>
+
+<p>
+  <b>Issued at:</b>
+  <%= @provisioning_profile.issued_at %>
+</p>
+
+<p>
+  <b>Expires at:</b>
+  <%= @provisioning_profile.expires_at %>
+</p>
+
+<p>
+  <b>Enterprise:</b>
+  <%= @provisioning_profile.enterprise %>
+</p>
+
+<p>
+  <b>Application identifier:</b>
+  <%= @provisioning_profile.application_identifier %>
+</p>
+
+<p>
+  <b>Team identifier:</b>
+  <%= @provisioning_profile.team_identifier %>
+</p>
+
+<p>
+  <b>Application identifier prefix:</b>
+  <%= @provisioning_profile.application_identifier_prefix %>
+</p>
+
+<p>
+  <b>Mobileprovision:</b>
+  <%= @provisioning_profile.mobileprovision %>
+</p>
+
+<p>
+  <b>Provisioned devices count:</b>
+  <%= @provisioning_profile.provisioned_devices_count %>
+</p>
+
+<%= link_to 'Back', provisioning_profiles_path %>

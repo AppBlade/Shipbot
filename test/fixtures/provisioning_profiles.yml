@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  uuid: MyString
+  name: MyString
+  issued_at: 
+  expires_at: 
+  enterprise: false
+  application_identifier: MyString
+  team_identifier: MyString
+  application_identifier_prefix: MyString
+  mobileprovision: MyString
+  provisioned_devices_count: 1
+
+two:
+  uuid: MyString
+  name: MyString
+  issued_at: 
+  expires_at: 
+  enterprise: false
+  application_identifier: MyString
+  team_identifier: MyString
+  application_identifier_prefix: MyString
+  mobileprovision: MyString
+  provisioned_devices_count: 1
