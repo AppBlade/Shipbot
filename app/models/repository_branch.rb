@@ -29,6 +29,17 @@ class RepositoryBranch < ActiveRecord::Base
           native_target.product_type = target['productType']
           native_target.save
 
+          plist['objects'][target['buildConfigurationList']]['buildConfigurations'].each do |configuration_id|
+            config = plist['objects'][configuration_id]
+            build_configuration = native_target.build_configurations.where(:uuid => configuration_id).first || native_target.build_configurations.new
+            build_configuration.name = config['name']
+            build_configuration.uuid = configuration_id
+            build_configuration.save
+          end
+
+          native_target.default_build_configuration = native_target.build_configurations.where(:name => plist['objects'][target['buildConfigurationList']]['defaultConfigurationName']).first
+          native_target.save
+
           NativeTargetRef.create :native_target_id => native_target.id, :sha => sha
         end
       end

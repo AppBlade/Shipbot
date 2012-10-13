@@ -8,7 +8,7 @@
   <% if native_target.build_rules.any? %>
     <ul>
       <% native_target.build_rules.each do |build_rule| %>
-        <li><%= link_to "Build and sign with #{build_rule.provisioning_profile}", [:edit, native_target, build_rule] %></li>
+        <li><%= link_to "#{build_rule.build_configuration} configuration with #{build_rule.provisioning_profile}", [:edit, native_target, build_rule] %></li>
       <% end %>
     </ul>
   <% elsif native_target.build_rules.count > 1 %>

@@ -4,6 +4,9 @@ class NativeTarget < ActiveRecord::Base
   
   has_many :build_rules
   has_many :native_target_refs
+  has_many :build_configurations
+
+  belongs_to :default_build_configuration, :class_name => 'BuildConfiguration'
 
   has_many :repository_branches, :through => :native_target_refs
   has_many :repository_tags,     :through => :native_target_refs
@@ -12,6 +15,10 @@ class NativeTarget < ActiveRecord::Base
 
   def to_s
     product_name
+  end
+
+  def name
+    "#{xcode_project} / #{product_name}"
   end
 
 end

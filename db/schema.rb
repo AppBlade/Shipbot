@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013194401) do
+ActiveRecord::Schema.define(:version => 20121013210244) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -24,11 +24,20 @@ ActiveRecord::Schema.define(:version => 20121013194401) do
     t.datetime "updated_at",                :null => false
   end
 
+  create_table "build_configurations", :force => true do |t|
+    t.string   "name"
+    t.string   "uuid"
+    t.integer  "native_target_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "build_rules", :force => true do |t|
     t.integer  "native_target_id"
     t.integer  "provisioning_profile_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.integer  "build_configuration_id"
   end
 
   create_table "developer_certificates", :force => true do |t|
@@ -56,8 +65,9 @@ ActiveRecord::Schema.define(:version => 20121013194401) do
     t.string   "uuid"
     t.string   "product_name"
     t.string   "product_type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "default_build_configuration_id"
   end
 
   create_table "provisioning_profiles", :force => true do |t|

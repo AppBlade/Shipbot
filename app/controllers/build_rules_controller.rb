@@ -2,11 +2,13 @@ class BuildRulesController < ApplicationController
 
   def new
     @build_rule = new_build_rule
+    @build_rule.build_configuration = @native_target.default_build_configuration if @native_target
   end
 
   def create
     @build_rule = new_build_rule
     @build_rule.attributes = params[:build_rule]
+    @build_rule.native_target ||= @build_rule.build_configuration.native_target
     if @build_rule.save
       redirect_to :xcode_projects
     else
