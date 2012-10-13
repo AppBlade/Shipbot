@@ -9,6 +9,7 @@ class AccessKey < ActiveRecord::Base
       site   'https://github.com'
       authorize_path    '/login/oauth/authorize'
       access_token_path '/login/oauth/access_token'
+      scopes 'repo'
     end
   end
 
