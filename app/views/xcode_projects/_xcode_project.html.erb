@@ -1,0 +1,12 @@
+<tr>
+  <th rowspan="<%= xcode_project.native_targets.count %>">
+    <%= xcode_project.name %>
+  </th>
+  <%= render [xcode_project.native_targets.first].compact %>
+</tr>
+
+<% xcode_project.native_targets[1..-1].each do |native_target| %>
+  <tr>
+    <%= render [native_target] %>
+  </tr>
+<% end %>
