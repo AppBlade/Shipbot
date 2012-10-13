@@ -1,5 +1,6 @@
-PATH
-  remote: ~/Apps/lasso
+GIT
+  remote: git@github.com:jamesdaniels/lasso.git
+  revision: e44a1be19900e4bc9fe38e29a692fc5cdb4ceff1
   specs:
     lasso (0.3.0)
       oauth (~> 0.4.7)
