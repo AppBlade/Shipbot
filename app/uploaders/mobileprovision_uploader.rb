@@ -39,7 +39,6 @@ private
     model.developer_certificate = DeveloperCertificate.where(:uid => attributes['UID']).first || DeveloperCertificate.new
     
     if model.developer_certificate.new_record?
-      model.developer_certificate.der = normalized_der
       model.developer_certificate.uid = attributes['UID']
       model.developer_certificate.serial = certificate.serial.to_s
       model.developer_certificate.name = attributes['CN']

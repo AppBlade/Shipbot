@@ -11,19 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013045105) do
+ActiveRecord::Schema.define(:version => 20121013053752) do
 
   create_table "developer_certificates", :force => true do |t|
-    t.string   "der",          :limit => 5000
     t.string   "name"
     t.string   "uid"
     t.string   "serial"
     t.string   "organization"
     t.datetime "expires_at"
     t.datetime "issued_at"
-    t.boolean  "pkcs12",                       :default => false, :null => false
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "keychain_export"
+    t.string   "keychain_export_passcode"
   end
 
   create_table "provisioning_profiles", :force => true do |t|
