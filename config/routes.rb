@@ -8,8 +8,8 @@ TwoHundredTwentyTwo::Application.routes.draw do
 
   root :to => 'pages#index'
 
-  match '/:service/oauth/start',     :to => 'oauth#new',    :as => :oauth_authorize
-  match '/:service/oauth/callback',  :to => 'oauth#create', :as => :oauth_callback
-  match '/access_key', :to => 'pages#index', :as => :access_key
+  match '/:service/oauth/start'    => 'oauth#new',    :as => :oauth_authorize
+  match '/:service/oauth/callback' => 'oauth#create', :as => :oauth_callback
+  match '/access_key' => redirect('/')
 
 end
