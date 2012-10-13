@@ -1,0 +1,21 @@
+<% content_for :title do %>
+  Track a new repository
+<% end %>
+
+<%= simple_form_for @repository do |form| %>
+  <div class="control-group select optional">
+    <label class="select optional control-label" for="repository_full_name">Choose a repository to track</label>
+    <div class="controls">
+      <select name="repository[full_name]">
+        <% @github_repositories.group_by(&:last).each do |login, github_repositories| %>
+          <optgroup label="<%= login %>">
+            <% github_repositories.each do |github_repository| %>
+              <option value="<%= github_repository[1] %>"><%= github_repository[0] %></option>
+            <% end %>
+          </optgroup>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <%= form.submit 'Track repository and fetch details', :class => 'btn btn-primary' %>
+<% end %>

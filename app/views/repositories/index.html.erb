@@ -15,3 +15,7 @@
   <%= render @repositories %>
 
 </table>
+
+<%= link_to new_repository_path, :class => 'btn btn-success btn-large' do %>
+  <i class="icon-plus"></i> Track a new repository
+<% end %>
