@@ -8,9 +8,13 @@ class RepositoryBranch < ActiveRecord::Base
 
   def fetch_tree
     JSON.parse(open("https://api.github.com/repos/#{full_name}/git/trees/#{name}?recursive=1&oauth_token=#{oauth_token}").read)['tree'].each do |result|
-      if result['path'].match /\.xcodeproj$/
+      if result['path'].match /\.xcodeproj\/project\.pbxproj$/
         # fetch the files needed from within the xcodeproj
-        puts result['path']
+        
+        puts result['url']
+        # fetch this
+        # JSON parse / grab ['content'] / base64.decode64 / read as plist
+        
       end
     end
   end
