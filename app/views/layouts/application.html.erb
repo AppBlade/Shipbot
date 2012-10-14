@@ -11,7 +11,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <a class="brand" href="/">Shipbot</a>
+        <a class="brand" href="/"><%= image_tag 'anchor-nav.png', class: 'anchor' %><%= image_tag 'shipbot-nav.png' %> Shipbot</a>
         <ul class="nav">
           <%= navigation_link 'Repositories', :repositories %>
           <%= navigation_link 'Projects', :xcode_projects %>
