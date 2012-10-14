@@ -1,3 +1,13 @@
-<p>ZOMG! Keep track of your builds over space/time.</p>
-
-<p>Proceed to <%= link_to 'the projects page', :xcode_projects %>, human.</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title><% if content_for? :title %><%= yield :title %> | <% end %>Shipbot</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= image_tag 'teaser.png', :style => 'top: 50%; left: 50%; position: fixed; margin-left: -399px; margin-top: -201px;' %>
+  <%= render 'shared/go_squared' %>
+</body>
+</html>

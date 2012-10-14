@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><% if content_for? :title %><%= yield :title %> | <% end %>TwoHundredTwentyTwo</title>
+  <title><% if content_for? :title %><%= yield :title %> | <% end %>Shipbot</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <a class="brand" href="/">Title</a>
+        <a class="brand" href="/">Shipbot</a>
         <ul class="nav">
           <%= navigation_link 'Repositories', :repositories %>
           <%= navigation_link 'Projects', :xcode_projects %>
