@@ -15,3 +15,7 @@
 //= require twitter/bootstrap
 //= require jquery_sexypost
 //= require_tree .
+
+$(document).ready(function() {
+  $('body > .container').css('min-height', window.innerHeight - $('body > footer').outerHeight() - $('body > .navbar').outerHeight());
+});
