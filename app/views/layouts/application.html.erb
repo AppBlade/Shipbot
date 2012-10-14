@@ -10,7 +10,7 @@
 
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-      <div class="container-fluid">
+      <div class="container">
         <a class="brand" href="/"><%= image_tag 'anchor-nav.png', class: 'anchor' %><%= image_tag 'shipbot-nav.png' %> Shipbot</a>
         <ul class="nav">
           <%= navigation_link 'Repositories', :repositories %>
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="container-fluid">
+  <div class="container">
     <div class="row-fluid">
       <div class="span12">
         <% if content_for? :title %>
@@ -34,8 +34,8 @@
   </div>
 
   <footer class="footer">
-    <div class="container-fluid">
-      Footer.
+    <div class="container">
+      <%= image_tag 'watermark.png', class: 'watermark' %>
     </div>
   </footer>
 
