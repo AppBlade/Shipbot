@@ -10,6 +10,13 @@
       <%= provisioning_profile.provisioned_devices_count %>
     <% end %>
   </td>
+  <td>
+    <% if provisioning_profile.developer_certificate.keychain_export? %>
+      Provided, ready to sign applications
+    <% else %>
+      <%= link_to 'Not provided, this is needed to sign applications', [:edit, provisioning_profile.developer_certificate] %>
+    <% end %>
+  </td>
   <td><%= link_to 'Details', provisioning_profile %></td>
   <td><%= link_to 'Destroy', provisioning_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
