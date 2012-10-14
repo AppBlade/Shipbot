@@ -8,4 +8,12 @@ class BuildRule < ActiveRecord::Base
 
   has_many :build_tasks
 
+  def to_s
+    if provisioning_profile
+      "#{build_configuration} configuration with #{provisioning_profile}"
+    else
+      "#{build_configuration} configuration unsigned"
+    end
+  end
+
 end

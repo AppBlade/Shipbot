@@ -4,6 +4,7 @@ TwoHundredTwentyTwo::Application.routes.draw do
   resources :repositories, :only => [:index, :new, :create, :update]
 
   resources :developer_certificates, :only => [:edit, :update]
+  resources :build_tasks, :only => :index
 
   resources :build_rules, :only => [:new, :create]
   resources :native_targets, :only => [] do

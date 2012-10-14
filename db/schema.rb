@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014223655) do
+ActiveRecord::Schema.define(:version => 20121014230926) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -40,12 +40,20 @@ ActiveRecord::Schema.define(:version => 20121014223655) do
     t.integer  "build_configuration_id"
   end
 
+  create_table "build_task_results", :force => true do |t|
+    t.string   "file"
+    t.integer  "build_task_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "build_tasks", :force => true do |t|
     t.integer  "build_rule_id"
     t.string   "sha"
     t.string   "name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "state",         :default => "queued"
   end
 
   create_table "developer_certificates", :force => true do |t|

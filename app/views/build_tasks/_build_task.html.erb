@@ -1,0 +1,14 @@
+<tr>
+  <td><%= build_task.build_rule.native_target.xcode_project %></td>
+  <td><%= build_task.build_rule.native_target %></td>
+  <td><%= build_task.name %></td>
+  <td><%= build_task.build_rule %></td>
+  <td><%= build_task.state %></td>
+  <td>
+    <ul>
+      <% build_task.build_task_results.each do |result| %>
+        <li><%= link_to result.file, result.file.path %></li>
+      <% end %>
+    </ul>
+  </td>
+</tr>
