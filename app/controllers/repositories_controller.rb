@@ -7,10 +7,10 @@ class RepositoriesController < ApplicationController
   def new
     @repository = Repository.new
     @github_repositories = []
-    @github_repositories |= JSON.parse(open("https://api.github.com/user/repos?per_page=500&oauth_token=#{oauth_token}").read).map {|r| [r['name'], r['full_name'], r['owner']['login']] }
-    JSON.parse(open("https://api.github.com/user/orgs?per_page=500&oauth_token=#{oauth_token}").read).each do |result|
-      @github_repositories |= JSON.parse(open("https://api.github.com/orgs/#{result['login']}/repos?per_page=500&oauth_token=#{oauth_token}").read).map {|r| [r['name'], r['full_name'], r['owner']['login']] }
-    end
+    #@github_repositories |= JSON.parse(open("https://api.github.com/user/repos?per_page=500&oauth_token=#{oauth_token}").read).map {|r| [r['name'], r['full_name'], r['owner']['login']] }
+    #JSON.parse(open("https://api.github.com/user/orgs?per_page=500&oauth_token=#{oauth_token}").read).each do |result|
+    #  @github_repositories |= JSON.parse(open("https://api.github.com/orgs/#{result['login']}/repos?per_page=500&oauth_token=#{oauth_token}").read).map {|r| [r['name'], r['full_name'], r['owner']['login']] }
+    #end
   end
 
   def create
