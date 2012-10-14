@@ -1,6 +1,7 @@
 class XcodeProject < ActiveRecord::Base
 
   has_many :native_targets
+  has_many :build_rules, :through => :native_targets
 
   has_many :xcode_project_refs
 

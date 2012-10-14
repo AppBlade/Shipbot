@@ -13,6 +13,21 @@ class Repository < ActiveRecord::Base
     github_webhook_id? && github_webhook_confirmed?
   end
 
+  def fetch_tags(build = false)
+    # get tags
+    # https://api.github.com/repos/AppBlade/SDK/tags
+    # fetch all by default, all new tags to appear are to be built against
+    # only scan new ones for xcodeproj
+    JSON.parse(open("https://api.github.com/repos/#{full_name}/tags?oauth_token=#{oauth_token}").read).each do |result|
+      tag = tags.where(:name => result['name']).first || tags.new
+      new_tag = tag.new_record?
+      tag.name = result['name']
+      tag.sha  = result['commit']['sha']
+      tag.save
+      tag.fetch_tree if build && new_tag
+    end
+  end
+
 private
 
   def oauth_token
@@ -64,19 +79,6 @@ private
       branch.name = result['name']
       branch.sha  = result['commit']['sha']
       branch.save
-    end
-  end
-
-  def fetch_tags
-    # get tags
-    # https://api.github.com/repos/AppBlade/SDK/tags
-    # fetch all by default, all new tags to appear are to be built against
-    # only scan new ones for xcodeproj
-    JSON.parse(open("https://api.github.com/repos/#{full_name}/tags?oauth_token=#{oauth_token}").read).each do |result|
-      tag = tags.where(:name => result['name']).first || tags.new
-      tag.name = result['name']
-      tag.sha  = result['commit']['sha']
-      tag.save
     end
   end
 
