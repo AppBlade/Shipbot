@@ -6,4 +6,8 @@ class P12Uploader < CarrierWave::Uploader::Base
     %w(p12)
   end
 
+  def store_dir
+    "uploads/certificates/#{model.id}"
+  end
+
 end

@@ -8,6 +8,10 @@ class MobileprovisionUploader < CarrierWave::Uploader::Base
     %w(mobileprovision)
   end
 
+  def store_dir
+    "uploads/mobileprovision/#{model.id}"
+  end
+
 private
 
   def verify_mobileprovision
