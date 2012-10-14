@@ -18,4 +18,6 @@ TwoHundredTwentyTwo::Application.routes.draw do
   match '/:service/oauth/callback' => 'oauth#create', :as => :oauth_callback
   match '/access_key' => redirect('/')
 
+  post '/github/webhook' => 'push#create'
+
 end
