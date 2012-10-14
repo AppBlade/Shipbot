@@ -9,9 +9,11 @@ class RepositoryBranch < ActiveRecord::Base
   delegate :full_name, :oauth_token, :to => :repository
 
   def fetch_tree
-    JSON.parse(open("https://api.github.com/repos/#{full_name}/git/trees/#{name}?recursive=1&oauth_token=#{oauth_token}").read)['tree'].each do |result|
-      if result['path'].match /\/(.+)\.xcodeproj\/project\.pbxproj$/
-        plist = Plist.parse_ascii(Base64.decode64(JSON.parse(open("#{result['url']}?oauth_token=#{oauth_token}").read)['content']))
+    results = JSON.parse(open("https://api.github.com/repos/#{full_name}/git/trees/#{name}?recursive=1&oauth_token=#{oauth_token}").read)
+    results['tree'].each do |result|
+      if result['path'].match /\/(.+)\.xcodeproj$/
+        plist_result = results['tree'].select{|r| r['path'] == "#{result['path']}/project.pbxproj" }.first
+        plist = Plist.parse_ascii(Base64.decode64(JSON.parse(open("#{plist_result['url']}?oauth_token=#{oauth_token}").read)['content']))
         root_uuid = plist['rootObject']
         root_object = plist['objects'][root_uuid]
 
@@ -19,7 +21,7 @@ class RepositoryBranch < ActiveRecord::Base
         xcode_project.name = File.basename($1)
         xcode_project.save
 
-        XcodeProjectRef.create :xcode_project_id => xcode_project.id, :sha => sha
+        XcodeProjectRef.create :xcode_project_id => xcode_project.id, :sha => sha, :path => result['path']
 
         root_object['targets'].each do |target_uuid|
           target = plist['objects'][target_uuid]

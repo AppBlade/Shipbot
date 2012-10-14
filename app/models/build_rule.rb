@@ -6,4 +6,6 @@ class BuildRule < ActiveRecord::Base
   belongs_to :provisioning_profile
   belongs_to :build_configuration
 
+  has_many :build_tasks
+
 end
