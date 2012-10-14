@@ -7,8 +7,11 @@ class Repository < ActiveRecord::Base
   has_many :branches, :class_name => 'RepositoryBranch'
 
   before_validation :get_details_from_github
-  before_create :setup_github_shared_secret, :setup_github_post_commit
-  after_create  :test_github_post_commit, :fetch_branches, :fetch_tags
+  after_create  :fetch_branches, :fetch_tags
+
+  def automatic_builds?
+    github_webhook_id? && github_webhook_confirmed?
+  end
 
 private
 
@@ -17,6 +20,10 @@ private
   end
 
   def get_details_from_github
+    json = JSON.parse(open("https://api.github.com/repos/#{full_name}?oauth_token=#{oauth_token}").read)
+    setup_github_shared_secret if json['permissions']['admin'] && github_shared_secret.nil?
+    setup_github_post_commit   if github_shared_secret? && github_shared_secret_changed?
+    test_github_post_commit    if github_webhook_id? && !github_webhook_confirmed?
   end
 
   def setup_github_shared_secret
@@ -35,6 +42,7 @@ private
     response = http.request request
     json = JSON.parse(response.body)
     self.github_webhook_id = json['id']
+    self.github_webhook_confirmed = false
     true
   end
 

@@ -23,6 +23,12 @@ class RepositoriesController < ApplicationController
     end
   end
 
+  def update
+    @repository = Repository.find params[:id]
+    @repository.save
+    redirect_to :repositories
+  end
+
 private
 
   def oauth_token

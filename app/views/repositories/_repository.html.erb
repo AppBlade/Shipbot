@@ -1,10 +1,11 @@
 <tr>
   <td><%= repository.full_name %></td>
   <td>
-    <% if repository.github_webhook_confirmed? %>
-      Will be performed when tags are pushed to Github
-    <% else %>
-      Will not be performed yet, we are still waiting on Github to confirm the hooks
+    <%= automatic_build_status repository %>
+    <% unless repository.automatic_builds? %>
+      <%= link_to repository, :method => :put, :class => 'btn btn-small pull-right' do %>
+        <i class="icon-refresh"></i> Try again
+      <% end %>
     <% end %>
   </td>
   <td><%= pluralize repository.branches.count, 'branch' %></td>
