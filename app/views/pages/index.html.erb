@@ -7,7 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= image_tag 'teaser.png', :style => 'top: 50%; left: 50%; position: fixed; margin-left: -383px; margin-top: -165px;' %>
+  <%= image_tag 'teaser.png', :id => 'teaser' %>
+  <div id="login">
+    You are already logged in as <em>jamesdaniels</em>, <%= link_to 'proceed to your repositories', :repositories %>.
+  </div>
   <%= render 'shared/go_squared' %>
 </body>
 </html>
