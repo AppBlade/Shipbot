@@ -1,5 +1,12 @@
 <tr>
   <td><%= repository.full_name %></td>
+  <td>
+    <% if repository.github_webhook_confirmed? %>
+      Will be performed when tags are pushed to Github
+    <% else %>
+      Will not be performed yet, we are still waiting on Github to confirm the hooks
+    <% end %>
+  </td>
   <td><%= pluralize repository.branches.count, 'branch' %></td>
   <td><%= pluralize repository.tags.count, 'tag' %></td>
 </tr>

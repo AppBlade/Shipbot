@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013210244) do
+ActiveRecord::Schema.define(:version => 20121014204439) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -89,8 +89,11 @@ ActiveRecord::Schema.define(:version => 20121013210244) do
   create_table "repositories", :force => true do |t|
     t.string   "full_name"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.string   "github_shared_secret"
+    t.integer  "github_webhook_id"
+    t.boolean  "github_webhook_confirmed", :default => false, :null => false
   end
 
   create_table "repository_branches", :force => true do |t|
