@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 	helper :all
 	helper_method :current_user_session, :current_user
     
+    def logout
+    	session[:user_session_id] = nil
+    	redirect_to root_url
+    end
+    
 private
 
 	def find_current_user_session

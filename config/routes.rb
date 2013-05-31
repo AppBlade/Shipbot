@@ -22,6 +22,7 @@ TwoHundredTwentyTwo::Application.routes.draw do
   match '/users' => 'user#show'
   match '/edit_user' => 'user#edit'
   match '/sign_in' => 'user#create'
+  match '/logout' => 'user#logout'
 
 
 
