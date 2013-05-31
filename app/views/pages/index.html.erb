@@ -9,10 +9,10 @@
 <body>
   <%= image_tag 'teaser.png', :id => 'teaser' %>
   <div id="login">
-	  <% if @user %>
-		You are already logged in as <em><%= @user %></em>, <%= link_to 'proceed to your repositories', :repositories %>.
+	  <% if current_user %>
+		You are already logged in as <em><%= current_user %></em>, <%= link_to 'proceed to your repositories', :repositories %>.
 	  <% else %>
-		<%= link_to 'Login', :repositories %> – <%= link_to 'Sign Up', :repositories %>
+		<%= link_to 'Sign in with Github', oauth_authorize_path(:service => 'github') %>
 	  <% end %>
   </div>
   <%= render 'shared/go_squared' %>
