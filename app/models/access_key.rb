@@ -6,7 +6,7 @@ class AccessKey < ActiveRecord::Base
     #t.integer  "owner_id"
     #t.datetime "created_at", "updated_at", :null => false
 
-  attr_accessible :service, :owner, :refresh_token, :access_token
+  attr_accessible :service, :token_a, :token_b, :type, :owner_type, :owner_id, :created_at, :updated_at
   belongs_to :owner, :polymorphic => true
   
   
