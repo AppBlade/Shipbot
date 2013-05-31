@@ -9,7 +9,11 @@
 <body>
   <%= image_tag 'teaser.png', :id => 'teaser' %>
   <div id="login">
-    You are already logged in as <em>jamesdaniels</em>, <%= link_to 'proceed to your repositories', :repositories %>.
+	  <% if @user %>
+		You are already logged in as <em><%= @user %></em>, <%= link_to 'proceed to your repositories', :repositories %>.
+	  <% else %>
+		<%= link_to 'Login', :repositories %> – <%= link_to 'Sign Up', :repositories %>
+	  <% end %>
   </div>
   <%= render 'shared/go_squared' %>
 </body>

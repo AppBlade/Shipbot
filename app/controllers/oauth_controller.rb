@@ -25,9 +25,12 @@ class OauthController < ApplicationController
                                    :login    => :handle_oauth_login
 
   def handle_oauth_login(user)
+  	  #handle user creation OR
+	  #create the user session
   end
 
   def handle_existing_oauth(user)
+  	#add new oauth key to a user
   end
 
   def user
