@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014230926) do
+ActiveRecord::Schema.define(:version => 20130531175638) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -126,6 +126,18 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
     t.integer  "repository_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "user_sessions", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "xcode_project_refs", :force => true do |t|
