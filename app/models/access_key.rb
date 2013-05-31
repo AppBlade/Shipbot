@@ -1,12 +1,6 @@
 class AccessKey < ActiveRecord::Base
 
-    #t.string   "token_a", "token_b", :limit => 999
-    #t.string   "service", "type", :null => false
-    #t.string   "owner_type"
-    #t.integer  "owner_id"
-    #t.datetime "created_at", "updated_at", :null => false
-
-  attr_accessible :service, :token_a, :token_b, :type, :owner_type, :owner_id, :created_at, :updated_at
+  attr_accessible :owner, :refresh_token, :access_token, :service, :token_a, :token_b, :type, :owner_type, :owner_id, :created_at, :updated_at
   belongs_to :owner, :polymorphic => true
   
   
