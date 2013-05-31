@@ -1,0 +1,7 @@
+<tr>
+  <td><%= access_key.service.capitalize %></td>
+  <td><%= access_key.access_token %></td>
+  <td><%= time_ago_in_words access_key.updated_at %> ago</td>
+  <td>Valid</td>
+  <td colspan="2"><%= link_to 'Refresh', '/user', :class=>'btn btn-info pull-left' %>  <%= link_to 'Forget', '/user', :class=>'btn btn-danger pull-right' %></td>
+</tr>
