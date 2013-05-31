@@ -4,8 +4,8 @@ class AccessKey < ActiveRecord::Base
   
   oauth do
     provider 'github' do
-      key    'aa60487c0b376c3dcbac'
-      secret 'e395cce95f9d24fb5f1f91a8bfaa54b443d6ca91'
+      key    ENV['OAUTH_KEY']
+      secret ENV['OAUTH_SECRET']
       site   'https://github.com'
       authorize_path    '/login/oauth/authorize'
       access_token_path '/login/oauth/access_token'

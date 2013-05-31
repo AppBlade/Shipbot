@@ -1,14 +1,27 @@
+<% build_task.build_task_results.size.tap do |rowspan| %>
 <tr>
-  <td><%= build_task.build_rule.native_target.xcode_project %></td>
-  <td><%= build_task.build_rule.native_target %></td>
-  <td><%= build_task.name %></td>
-  <td><%= build_task.build_rule %></td>
-  <td><%= build_task.state %></td>
+  <td rowspan=<%= rowspan %>><%= build_task.build_rule.native_target.xcode_project %></td>
+  <td rowspan=<%= rowspan %>><%= build_task.build_rule.native_target %></td>
+  <td rowspan=<%= rowspan %>><%= build_task.name %></td>
+  <td rowspan=<%= rowspan %>><%= build_task.build_rule %></td>
+  <td rowspan=<%= rowspan %>><%= build_task.state %></td>
   <td>
-    <ul>
-      <% build_task.build_task_results.each do |result| %>
-        <li><%= link_to result.file, result.file.path %></li>
+    <% build_task.build_task_results.first.tap do |result| %>
+      <%= link_to result do %>
+        <%= File.basename result.file.to_s %>
+        <small><%= number_to_human_size result.file.size %></small>
       <% end %>
-    </ul>
+    <% end %>
   </td>
 </tr>
+<% end %>
+<% build_task.build_task_results[1..-1].each do |result| %>
+  <tr>
+    <td>
+      <%= link_to result do %>
+        <%= File.basename result.file.to_s %>
+        <small><%= number_to_human_size result.file.size %></small>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

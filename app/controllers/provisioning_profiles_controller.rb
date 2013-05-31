@@ -23,7 +23,7 @@ class ProvisioningProfilesController < ApplicationController
     @provisioning_profile = ProvisioningProfile.new(params[:provisioning_profile])
 
     if @provisioning_profile.save
-      redirect_to @provisioning_profile, notice: 'Provisioning profile was successfully created.'
+      redirect_to provisioning_profiles_url, notice: 'Provisioning profile was successfully created.'
     else
       render action: "new"
     end

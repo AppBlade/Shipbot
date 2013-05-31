@@ -31,7 +31,7 @@ class Repository < ActiveRecord::Base
 private
 
   def oauth_token
-    'aaf8712c7e25ed4754a9f8c0be019272b18c65b5'
+    ENV['OAUTH_TOKEN']
   end
 
   def get_details_from_github
@@ -52,7 +52,7 @@ private
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Post.new uri.request_uri
     request['Authorization'] = "Bearer #{oauth_token}"
-    post_url = Rails.env.production? && 'http://foundation.r12.railsrumble.com/github/webhook' || 'http://james.showoff.io/github/webhook'
+    post_url = Rails.env.production? && 'http://foundation.r12.railsrumble.com/github/webhook' || 'https://james.fwd.wf/github/webhook'
     request.body = {name: 'web', events: ['push'], active: true, config: {url: post_url, content_type: 'json', secret: github_shared_secret}}.to_json
     response = http.request request
     json = JSON.parse(response.body)
