@@ -1,40 +1,18 @@
-class StubUser
-  def self.primary_key
-    :id
-  end
-  def update_attributes!(a)
-    Rails.logger.info a.inspect
-  end
-  def [](a)
-    []
-  end
-  def self.base_class
-    StubUser
-  end
-  def access_keys
-    []
-  end
-end
-
+#Handles User creation 
 class OauthController < ApplicationController
-
   processes_oauth_transactions_for :access_keys,
-                                   :through  => lambda { user },
+                                   :through  => lambda { current_user || User.new },
                                    :callback => lambda { oauth_callback_url },
                                    :conflict => :handle_existing_oauth,
                                    :login    => :handle_oauth_login
 
   def handle_oauth_login(user)
-  	  #handle user creation OR
-	  #create the user session
+	 user_session = UserSession.new :user => user
+	 user_session.save
   end
 
   def handle_existing_oauth(user)
-  	#add new oauth key to a user
-  end
-
-  def user
-    StubUser.new
+  	redirect_to root_url, :error => "Already linked with another account"
   end
 
 end
