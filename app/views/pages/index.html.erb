@@ -10,7 +10,7 @@
   <%= image_tag 'teaser.png', :id => 'teaser' %>
   <div id="login">
 	  <% if current_user %>
-		You are logged in as <em><%= current_user %></em> <%= label_tag nil, nil, :class => current_user.main_provider_icon %>, <%= link_to 'proceed to your repositories', :repositories %>.
+		You are logged in as <em><%= current_user %></em> <%= label_tag nil, nil, :class => main_provider_icon(current_user) %>, <%= link_to 'proceed to your repositories', :repositories %>.
 	  <% else %>
 		<%= link_to 'Sign in with Github', oauth_authorize_path(:service => 'github') %>
 	  <% end %>
