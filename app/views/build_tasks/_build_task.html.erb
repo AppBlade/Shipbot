@@ -7,15 +7,17 @@
   <td rowspan=<%= rowspan %>><%= build_task.state %></td>
   <td>
     <% build_task.build_task_results.first.tap do |result| %>
-      <%= link_to result do %>
-        <%= File.basename result.file.to_s %>
-        <small><%= number_to_human_size result.file.size %></small>
+      <% if result %>
+          <%= link_to result do %>
+          <%= File.basename result.file.to_s %>
+          <small><%= number_to_human_size result.file.size %></small>
+        <% end %>
       <% end %>
     <% end %>
   </td>
 </tr>
 <% end %>
-<% build_task.build_task_results[1..-1].each do |result| %>
+<% build_task.build_task_results[1..-1].try(:each) do |result| %>
   <tr>
     <td>
       <%= link_to result do %>

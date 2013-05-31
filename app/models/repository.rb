@@ -28,11 +28,23 @@ class Repository < ActiveRecord::Base
     end
   end
 
-private
-
   def oauth_token
     ENV['OAUTH_TOKEN']
   end
+
+  def get_archive_link(ref)
+    uri = URI.parse "https://api.github.com/repos/#{full_name}/zipball/#{ref}"
+    http = Net::HTTP.new uri.host, uri.port
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    request = Net::HTTP::Get.new uri.request_uri
+    request['Authorization'] = "Bearer #{oauth_token}"
+    response = http.request request
+    response['Location']
+  end
+
+private
+
 
   def get_details_from_github
     json = JSON.parse(open("https://api.github.com/repos/#{full_name}?oauth_token=#{oauth_token}").read)
