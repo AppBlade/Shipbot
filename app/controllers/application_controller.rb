@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
 	protect_from_forgery
 	
-	before_filter :find_current_user_session, :check_current_user_access
+	before_filter :find_current_user_session, :check_github_status, :check_current_user_access
 	
 	helper :all
 	helper_method :current_user_session, :current_user
@@ -11,6 +11,17 @@ class ApplicationController < ActionController::Base
     def logout
     	session[:user_session_id] = nil
     	redirect_to root_url
+    end
+    
+    def check_github_status
+    	conn = Faraday.new "https://status.github.com/", ssl: {verify: false} 
+		github_status_resp = conn.get "/api/status.json"
+		if github_status_resp
+			github_status = JSON::parse(github_status_resp.body)
+			if github_status["status"] != "good"
+				flash[:warning] = "Github is experiencing some issues right now. Some parts of Shipbot might not be available."
+			end
+		end
     end
     
 private
