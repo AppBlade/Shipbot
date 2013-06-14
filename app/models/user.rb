@@ -1,6 +1,10 @@
 class User < ActiveRecord::Base
 
-  has_many :access_keys, :dependent => :destroy, :as => :owner
+  has_many :repositories,           :dependent => :destroy
+  has_many :provisioning_profiles,  :dependent => :destroy
+  has_many :developer_certificates, :dependent => :destroy
+
+  has_many :access_keys,   :dependent => :destroy, :as => :owner
   has_many :user_sessions, :dependent => :destroy
 
   before_create :gather_info_from_provider
