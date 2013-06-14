@@ -19,10 +19,15 @@ TwoHundredTwentyTwo::Application.routes.draw do
   resources :users, :only => [:show, :edit]
 
 
+  match '/me' => 'user#show'
   match '/users' => 'user#show'
+  
   match '/edit_user' => 'user#edit'
+  
   match '/sign_in' => 'user#create'
   match '/logout' => 'user#logout'
+
+  match '/delete_user' => 'user#destroy'
 
 
 
