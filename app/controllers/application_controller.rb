@@ -37,6 +37,7 @@ private
 			#we always need to see their repos
 			conn = Faraday.new "https://api.github.com/", ssl: {verify: false} 
 			repo_check = conn.get "/user/repos?per_page=500&oauth_token=#{current_user.access_keys.first.token_a}"
+			ENV['OAUTH_TOKEN'] = current_user.access_keys.first.token_a
 			if (repo_check.status == 403)
 			 	session[:user_session_id] = nil #invalidate the user session
 			 	puts "repo access invalidated!"
