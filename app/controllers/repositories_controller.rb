@@ -31,8 +31,5 @@ class RepositoriesController < ApplicationController
 
 private
 
-  def oauth_token
-    ENV['OAUTH_TOKEN']
-  end
 
 end

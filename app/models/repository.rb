@@ -29,7 +29,7 @@ class Repository < ActiveRecord::Base
   end
 
   def oauth_token
-    ENV['OAUTH_TOKEN']
+	ENV['OAUTH_TOKEN']  
   end
 
   def get_archive_link(ref)
@@ -64,7 +64,7 @@ private
     http.verify_mode = OpenSSL::SSL::VERIFY_NONE
     request = Net::HTTP::Post.new uri.request_uri
     request['Authorization'] = "Bearer #{oauth_token}"
-    post_url = Rails.env.production? && 'http://foundation.r12.railsrumble.com/github/webhook' || 'https://james.fwd.wf/github/webhook'
+    post_url = "#{ENV['GITHUB_WEBHOOK_HOST']}/github/webhook" || "#{ENV['GITHUB_WEBHOOK_HOST']}/github/webhook"
     request.body = {name: 'web', events: ['push'], active: true, config: {url: post_url, content_type: 'json', secret: github_shared_secret}}.to_json
     response = http.request request
     json = JSON.parse(response.body)
