@@ -17,7 +17,7 @@ class RepositoryBranch < ActiveRecord::Base
         root_uuid = plist['rootObject']
         root_object = plist['objects'][root_uuid]
 
-        xcode_project = XcodeProject.find_or_create_by_uuid root_uuid
+        xcode_project = repository.xcode_projects.find_or_create_by_uuid root_uuid
         xcode_project.name = File.basename($1)
         xcode_project.save
 

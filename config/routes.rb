@@ -16,6 +16,21 @@ TwoHundredTwentyTwo::Application.routes.draw do
 
   resources :provisioning_profiles, :except => [:edit, :update]
 
+  resources :users, :only => [:show, :edit]
+
+
+  match '/me' => 'user#show'
+  match '/users' => 'user#show'
+  
+  match '/edit_user' => 'user#edit'
+  
+  match '/sign_in' => 'user#create'
+  match '/logout' => 'user#logout'
+
+  match '/delete_user' => 'user#destroy'
+
+
+
   root :to => 'pages#index'
 
   match '/:service/oauth/start'    => 'oauth#new',    :as => :oauth_authorize

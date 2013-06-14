@@ -38,7 +38,7 @@ class BuildRulesController < ApplicationController
 private
 
   def native_target
-    @native_target ||= NativeTarget.find params[:native_target_id]
+    @native_target ||= current_user.native_targets.find params[:native_target_id]
   end
 
   def new_build_rule

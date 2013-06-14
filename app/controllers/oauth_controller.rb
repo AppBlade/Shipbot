@@ -1,37 +1,21 @@
-class StubUser
-  def self.primary_key
-    :id
-  end
-  def update_attributes!(a)
-    Rails.logger.info a.inspect
-  end
-  def [](a)
-    []
-  end
-  def self.base_class
-    StubUser
-  end
-  def access_keys
-    []
-  end
-end
-
+#Handles User creation 
 class OauthController < ApplicationController
+  
+  skip_before_filter :check_current_user_access
+  skip_before_filter :require_user
 
   processes_oauth_transactions_for :access_keys,
-                                   :through  => lambda { user },
+                                   :through  => lambda { current_user || User.new },
                                    :callback => lambda { oauth_callback_url },
-                                   :conflict => :handle_existing_oauth,
+                                   :conflict => :handle_oauth_login,
                                    :login    => :handle_oauth_login
 
   def handle_oauth_login(user)
-  end
-
-  def handle_existing_oauth(user)
-  end
-
-  def user
-    StubUser.new
+	 user_session = UserSession.new
+	 user_session.user = user
+	 user_session.save
+	 session[:user_session_id] = user_session.id
+   redirect_back_or_default repositories_url
   end
 
 end

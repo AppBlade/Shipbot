@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014230926) do
+ActiveRecord::Schema.define(:version => 20130614202750) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -35,9 +35,12 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
   create_table "build_rules", :force => true do |t|
     t.integer  "native_target_id"
     t.integer  "provisioning_profile_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.integer  "build_configuration_id"
+    t.string   "appblade_token",              :limit => 32
+    t.string   "appblade_release_track_list"
+    t.boolean  "appblade_send_notification",                :default => true, :null => false
   end
 
   create_table "build_task_results", :force => true do |t|
@@ -67,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
     t.datetime "updated_at",               :null => false
     t.string   "keychain_export"
     t.string   "keychain_export_passcode"
+    t.integer  "user_id"
   end
 
   create_table "native_target_refs", :force => true do |t|
@@ -100,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.integer  "developer_certificate_id"
+    t.integer  "user_id"
   end
 
   create_table "repositories", :force => true do |t|
@@ -110,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
     t.string   "github_shared_secret"
     t.integer  "github_webhook_id"
     t.boolean  "github_webhook_confirmed", :default => false, :null => false
+    t.integer  "user_id"
   end
 
   create_table "repository_branches", :force => true do |t|
@@ -128,6 +134,19 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "user_sessions", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "email"
+  end
+
   create_table "xcode_project_refs", :force => true do |t|
     t.integer  "xcode_project_id"
     t.string   "sha"
@@ -139,8 +158,9 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
   create_table "xcode_projects", :force => true do |t|
     t.string   "uuid"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "repository_id"
   end
 
 end

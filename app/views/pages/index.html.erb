@@ -7,10 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= image_tag 'teaser.png', :id => 'teaser' %>
-  <div id="login">
-    You are already logged in as <em>jamesdaniels</em>, <%= link_to 'proceed to your repositories', :repositories %>.
-  </div>
-  <%= render 'shared/go_squared' %>
+  <div class="container" style="margin-top:2em;">
+	    <div class="row-fluid span12">
+		  <%= image_tag 'teaser.png' %>
+		</div>
+	    <div class="row-fluid span10">
+	    <div class="pull-right">
+		  <% if current_user %>
+			  You are logged in as <em><%= current_user %></em> <%= label_tag nil, nil, :class => main_provider_icon(current_user) %>, <%= link_to 'proceed to your repositories', :repositories %>.
+		  <% else %>
+			  <%= link_to 'Sign in with Github', oauth_authorize_path(:service => 'github'), :style=>"margin-right:2em;" %>
+		  <% end %>
+	   </div>
+	   </div>
+	    <div class="row-fluid span12"><br/><div>
+	<%= render 'shared/flashes' %>
+	<%= render 'shared/go_squared' %>
+	</div>
 </body>
 </html>
