@@ -42,6 +42,10 @@ private
   end
 
   def new_build_rule
+  	if native_target.blank?
+  		redirect build_rules_path
+  		flash[:error] = "Project must be a native Xcode Project. Contact support if you think this is in error."
+  	end
     params[:native_target_id] && native_target.build_rules.new || BuildRule.new
   end
 
