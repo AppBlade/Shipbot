@@ -38,13 +38,13 @@ class BuildRulesController < ApplicationController
 private
 
   def native_target
-    @native_target ||= current_user.native_targets.find params[:native_target_id]
+    @native_target ||= current_user.native_targets.find params[:native_target_id] unless params[:native_target_id].nil? 
   end
 
   def new_build_rule
   	if native_target.blank?
-  		redirect build_rules_path
-  		flash[:error] = "Project must be a native Xcode Project. Contact support if you think this is in error."
+    redirect_to :xcode_projects
+  		flash[:error] = "Projects must be a buildable Xcode Project. Contact us if you think this is an error."
   	end
     params[:native_target_id] && native_target.build_rules.new || BuildRule.new
   end
