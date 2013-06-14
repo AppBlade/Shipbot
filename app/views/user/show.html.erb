@@ -2,7 +2,7 @@
   <%= current_user %>
 <% end %>
   <h5><%= current_user.email %></h5>
-  <p>User since <%= time_since current_user.created_at %></p> <%= link_to 'Logout', '/logout', :class=>'btn btn-danger pull-right' %>
+  <p>User since <%= time_since current_user.created_at %> <i>(all time is in UTC)</i></p> <%= link_to 'Logout', '/logout', :class=>'btn btn-danger pull-right' %>
 <br/>
 <table class="table table-striped table-bordered" style="min-width: 940px;">
   <h4>Access Keys</h4>
