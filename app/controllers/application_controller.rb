@@ -23,14 +23,12 @@ private
 	
 	def check_current_user_access
 		if current_user
-			puts "repo check"
 			#we always need to see their repos
 			conn = Faraday.new "https://api.github.com/", ssl: {verify: false} 
 			repo_check = conn.get "/user/repos?per_page=500&oauth_token=#{current_user.access_keys.first.token_a}"
-			puts repo_check.status
 			if (repo_check.status == 403)
 			 	session[:user_session_id] = nil #invalidate the user session
-			 	puts "invalidated!"
+			 	puts "repo access invalidated!"
 			end
 		end
 		#check page-level whether not having a user is crucial
