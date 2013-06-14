@@ -5,7 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-repository = Repository.where(full_name: 'AppBlade/SDK').first || Repository.new
-repository.full_name = 'AppBlade/SDK'
-repository.save

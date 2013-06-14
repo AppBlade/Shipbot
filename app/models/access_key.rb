@@ -1,6 +1,8 @@
 class AccessKey < ActiveRecord::Base
 
-  attr_accessible :service, :owner, :refresh_token, :access_token
+  attr_accessible :owner, :refresh_token, :access_token, :service, :token_a, :token_b, :type, :owner_type, :owner_id, :created_at, :updated_at
+  belongs_to :owner, :polymorphic => true
+  
   
   oauth do
     provider 'github' do

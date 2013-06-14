@@ -6,6 +6,8 @@ class Repository < ActiveRecord::Base
   has_many :tags,     :class_name => 'RepositoryTag'
   has_many :branches, :class_name => 'RepositoryBranch'
 
+  has_many :xcode_projects, :dependent => :destroy
+
   before_validation :get_details_from_github
   after_create  :fetch_branches, :fetch_tags
 
