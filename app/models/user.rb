@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_many :access_keys, :as => :owner
-  has_many :user_sessions
+  has_many :access_keys, :dependent => :destroy, :as => :owner
+  has_many :user_sessions, :dependent => :destroy
 
   before_create :gather_info_from_provider
 
@@ -11,9 +11,12 @@ class User < ActiveRecord::Base
 
 
   def gather_info_from_provider
-	result = JSON.parse(open("https://api.github.com/user?oauth_token=#{access_keys.first.token_a}").read)
-  	self.name = result['login']
-  	self.email = result['email']
+  			conn = Faraday.new "https://api.github.com/", ssl: {verify: false} 
+			result = conn.get "/user?oauth_token=#{access_keys.first.token_a}"
+	result_body = JSON.parse(result.body)
+	puts result_body	
+  	self.name = result_body['login']
+  	self.email = result_body['email']
   end
   
   
