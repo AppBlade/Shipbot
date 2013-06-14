@@ -3,6 +3,7 @@ class PushController < ApplicationController
   HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
 
   protect_from_forgery :except => :create
+  skip_before_filter :require_user
 
   def create
     full_name = "#{params['repository']['owner']['name']}/#{params['repository']['name']}"
