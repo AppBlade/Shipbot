@@ -14,7 +14,7 @@ class BuildTaskResultsController < ApplicationController
   end
 
   def show
-    build_task_result = BuildTaskResult.find params[:id]
+    build_task_result = current_user.build_tasks.find params[:id]
     send_file build_task_result.file.path
   end
 

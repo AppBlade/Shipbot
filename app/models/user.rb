@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :provisioning_profiles,  :dependent => :destroy
   has_many :developer_certificates, :dependent => :destroy
 
+  has_many :xcode_projects, :through => :repositories
+
   has_many :access_keys,   :dependent => :destroy, :as => :owner
   has_many :user_sessions, :dependent => :destroy
 
@@ -13,6 +15,13 @@ class User < ActiveRecord::Base
   
   attr_accessible :access_keys_attributes
 
+  def build_tasks
+    BuildTask.joins(:build_rule => :native_target).where(:native_targets => {:xcode_project_id => xcode_projects})
+  end
+
+  def native_targets
+    NativeTarget.where(:xcode_project_id => xcode_projects)
+  end
 
   def gather_info_from_provider
   			conn = Faraday.new "https://api.github.com/", ssl: {verify: false} 

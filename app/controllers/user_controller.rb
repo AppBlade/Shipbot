@@ -5,7 +5,7 @@ class UserController < ApplicationController
 	end
 	
 	def show
-		@access_keys = AccessKey.where(:owner_id => current_user.id)
+		@access_keys = current_user.access_keys
 	end
 	
 	def edit
