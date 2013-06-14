@@ -1,9 +1,22 @@
 <%= simple_form_for [@native_target, @build_rule] do |form| %>
-  <%= form.input :provisioning_profile_id, :collection => ProvisioningProfile.all, :include_blank => false %>
-  <% if @native_target %>
-    <%= form.input :build_configuration_id, :collection => @native_target.build_configurations, :include_blank => false  %>
-  <% else %>
-    <%= form.input :build_configuration_id, :collection => NativeTarget.application_type.all, :group_method => :build_configurations, :as => :grouped_select %>
-  <% end %>
+  <fieldset>
+    <legend>Xcode settings</legend>
+    <% if @native_target %>
+      <%= form.input :build_configuration_id, :collection => @native_target.build_configurations, :include_blank => false  %>
+    <% else %>
+      <%= form.input :build_configuration_id, :collection => NativeTarget.application_type.all, :group_method => :build_configurations, :as => :grouped_select %>
+    <% end %>
+  </fieldset>
+  <fieldset>
+    <legend>Provisioning</legend>
+    <%= form.input :provisioning_profile_id, :collection => ProvisioningProfile.all, :include_blank => false %>
+  </fieldset>
+  <fieldset>
+    <legend>AppBlade integration</legend>
+    <%= form.input :appblade_token, :label => 'Continuous integration token' %>
+    <%= form.input :appblade_release_track_list, :label => 'Release tracks' %>
+    <%= form.input :appblade_send_notification %>
+  </fieldset>
+  <hr>
   <%= form.submit :class => 'btn btn-primary' %>
 <% end %>

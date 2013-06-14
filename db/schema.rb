@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121014230926) do
+ActiveRecord::Schema.define(:version => 20130614180258) do
 
   create_table "access_keys", :force => true do |t|
     t.string   "token_a",    :limit => 999
@@ -35,9 +35,12 @@ ActiveRecord::Schema.define(:version => 20121014230926) do
   create_table "build_rules", :force => true do |t|
     t.integer  "native_target_id"
     t.integer  "provisioning_profile_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
     t.integer  "build_configuration_id"
+    t.string   "appblade_token",              :limit => 32
+    t.string   "appblade_release_track_list"
+    t.boolean  "appblade_send_notification",                :default => true, :null => false
   end
 
   create_table "build_task_results", :force => true do |t|
