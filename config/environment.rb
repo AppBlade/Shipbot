@@ -9,3 +9,4 @@ ENV['OAUTH_SECRET']  = ''
 ENV['OAUTH_TOKEN']   = ''
 ENV['GITHUB_WEBHOOK_HOST']   = 'https://james.fwd.wf'
 
+ENV['SUPPORT_EMAIL']   = 'shipbot.help@gmail.com'
