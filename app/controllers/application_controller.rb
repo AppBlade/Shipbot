@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-	
+	require 'faraday'
+
 	protect_from_forgery
 	
-	before_filter :find_current_user_session
+	before_filter :find_current_user_session, :check_current_user_access
 	
 	helper :all
 	helper_method :current_user_session, :current_user
@@ -18,6 +19,21 @@ private
 		if session[:user_session_id]
 			@current_user_session = UserSession.where(:id => session[:user_session_id]).first
 		end
+	end
+	
+	def check_current_user_access
+		if current_user
+			puts "repo check"
+			#we always need to see their repos
+			conn = Faraday.new "https://api.github.com/", ssl: {verify: false} 
+			repo_check = conn.get "/user/repos?per_page=500&oauth_token=#{current_user.access_keys.first.token_a}"
+			puts repo_check.status
+			if (repo_check.status == 403)
+			 	session[:user_session_id] = nil #invalidate the user session
+			 	puts "invalidated!"
+			end
+		end
+		#check page-level whether not having a user is crucial
 	end
     
 	def current_user_session
