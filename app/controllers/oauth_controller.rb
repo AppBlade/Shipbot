@@ -1,5 +1,7 @@
 #Handles User creation 
 class OauthController < ApplicationController
+  skip_before_filter :check_current_user_access
+
   processes_oauth_transactions_for :access_keys,
                                    :through  => lambda { current_user || User.new },
                                    :callback => lambda { oauth_callback_url },
