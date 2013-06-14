@@ -1,6 +1,8 @@
 #Handles User creation 
 class OauthController < ApplicationController
+  
   skip_before_filter :check_current_user_access
+  skip_before_filter :require_user
 
   processes_oauth_transactions_for :access_keys,
                                    :through  => lambda { current_user || User.new },
@@ -13,7 +15,7 @@ class OauthController < ApplicationController
 	 user_session.user = user
 	 user_session.save
 	 session[:user_session_id] = user_session.id
-	 redirect_to root_url
+   redirect_back_or_default repositories_url
   end
 
 end

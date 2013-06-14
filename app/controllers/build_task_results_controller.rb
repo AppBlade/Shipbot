@@ -1,6 +1,7 @@
 class BuildTaskResultsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token, :only => :create
+  skip_before_filter :require_user, :only => :create
 
   def create
     build_task = BuildTask.find params[:build_task_id]
