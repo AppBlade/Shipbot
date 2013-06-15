@@ -44,7 +44,7 @@ private
   def new_build_rule
   	if native_target.blank?
     redirect_to :xcode_projects
-  		flash[:error] = "Projects must be a buildable Xcode Project. Contact us if you think this is an error."
+  		flash[:error] = "Projects must have a buildable Xcode Project. <a href=\"mailto:#{support_email}\">Contact us</a> if you think this is an error.".html_safe
   	end
     params[:native_target_id] && native_target.build_rules.new || BuildRule.new
   end
