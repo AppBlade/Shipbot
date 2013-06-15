@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
 		end
     end
     
+    def support_email
+		ENV['SUPPORT_EMAIL']
+	end 
+    
 private
 
 	def find_current_user_session
