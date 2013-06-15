@@ -3,8 +3,8 @@ require "net/https"
 
 class Repository < ActiveRecord::Base
 
-  has_many :tags,     :class_name => 'RepositoryTag'
-  has_many :branches, :class_name => 'RepositoryBranch'
+  has_many :tags,     :class_name => 'RepositoryTag', :dependent => :destroy
+  has_many :branches, :class_name => 'RepositoryBranch', :dependent => :destroy
 
   has_many :xcode_projects, :dependent => :destroy
 
