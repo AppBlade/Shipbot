@@ -29,6 +29,13 @@ class RepositoriesController < ApplicationController
     redirect_to :repositories
   end
 
+  def destroy
+    repository = current_user.repositories.find params[:id]
+    flash[:notify] = "#{repository.full_name} removed from Shipbot."    
+    repository.destroy
+    redirect_to :repositories
+  end
+
 private
 
 
