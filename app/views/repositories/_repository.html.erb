@@ -10,4 +10,5 @@
   </td>
   <td><%= pluralize repository.branches.count, 'branch' %></td>
   <td><%= pluralize repository.tags.count, 'tag' %></td>
+  <td><%= button_to "Forget", repository, :method=>:delete, :class=>'destroy btn btn-danger' %></td>
 </tr>
