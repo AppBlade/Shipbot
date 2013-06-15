@@ -12,8 +12,13 @@
     <th>Automatic builds</th>
     <th colspan="2"></th>
   </tr>
-
+<% if  @repositories.any? %>
   <%= render @repositories %>
+<% else %>
+  <tr>
+    <td colspan="4">You don't have any repositories tracked yet! Track one by clicking below.</td>
+  </tr>
+<% end %>
 
 </table>
 

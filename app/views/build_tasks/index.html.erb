@@ -2,6 +2,9 @@
   Results
 <% end %>
 
+
+<p>These are where your builds are kept and hosted.</br>
+Manual builds can be fired off from the <%= link_to 'projects page', :xcode_projects %>, for an automatic build just push a tag.</p>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -14,6 +17,13 @@
     </tr>
   </thead>
   <tbody>
+  <% if  @build_tasks.any? %>
     <%= render @build_tasks %>
+	<% else %>
+	  <tr>
+		<td colspan="6">You don't have anything built yet. Maybe you need to set up a project in your <%= link_to "projects tab", :xcode_projects %>? Or maybe you need to <%= link_to "link a repository", :repositories %>? </td>
+	  </tr>
+	<% end %>
+
   </tbody>
 </table>

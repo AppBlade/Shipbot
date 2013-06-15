@@ -13,8 +13,13 @@
     <th></th>
     <th></th>
   </tr>
-
+<% if @provisioning_profiles.any? %>
   <%= render @provisioning_profiles %>
+<% else %>
+    <tr>
+    <td colspan="7">You don't have any provsioning profiles. Upload one by clicking below.</td>
+  </tr>
+<% end %>
 
 </table>
 

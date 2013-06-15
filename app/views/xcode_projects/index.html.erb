@@ -9,9 +9,14 @@
     <th>Branches</th>
     <th>Rules</th>
   </tr>
-
+<% if  @xcode_projects.any? %>
   <%= render @xcode_projects %>
-
+<% else %>
+  <tr>
+    <td colspan="4">You don't have any projects yet. Start configuring your projects in the <%= link_to "Repositories tab", :repositories %>.</td>
+  </tr>
+<% end %>
+ 
 </table>
 
 <%= link_to [:new, :build_rule], :class => 'btn btn-success btn-large' do %>
