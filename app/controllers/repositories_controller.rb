@@ -14,13 +14,24 @@ class RepositoriesController < ApplicationController
   end
 
   def create
-    @repository = current_user.repositories.new
-    @repository.full_name = params[:repository][:full_name]
-    if @repository.save
-      redirect_to :xcode_projects
-    else
-      render :new
-    end
+ 	repository_full_name = params[:repository][:full_name]
+  	if Repository.where(:user_id => current_user.id, :full_name => repository_full_name).count == 0
+		@repository = current_user.repositories.new
+		@repository.full_name = repository_full_name
+		if @repository.save
+			if @repository.xcode_projects.count > 0
+				redirect_to :xcode_projects
+			else
+				flash[:warning] = "Could not find any projects in #{@repository.full_name}."  
+				redirect_to :repositories
+			end
+		else
+		  render :new
+		end
+	else
+		flash[:warning] = "You already created a link to #{repository_full_name}."  
+		redirect_to :repositories
+	end
   end
 
   def update
@@ -31,7 +42,9 @@ class RepositoriesController < ApplicationController
 
   def destroy
     repository = current_user.repositories.find params[:id]
-    flash[:notify] = "#{repository.full_name} removed from Shipbot."    
+    flash[:notice] = "#{repository.full_name} removed from Shipbot." unless repository.nil?  
+    flash[:error] = "An error occurred and this repository could not be removed" unless repository  
+
     repository.destroy
     redirect_to :repositories
   end
